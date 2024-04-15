@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+#root {
+  color: #000;
+  font-size: 12px;
+}
+
+.progress-token-list {
+  list-style-type: none; /* Remove default list style */
+  padding: 0;
+}
+.progress-token {
+  display: inline-block; /* Make list items display in one row */
+  margin-right: 10px; /* Add some spacing between items */
+  width: 90px; /* Set width of list items */
+  height: 90px; /* Set height of list items */
+  border-radius: 50%; /* Make list items circular */
+  background-color: #e0ffba; /* Background color of circles */
+  color: black; /* Text color */
+  text-align: center; /* Center text horizontally */
+  line-height: 90px; /* Center text vertically */
+  border: 2px solid #5b822b; /* Set initial border to transparent */
+}
+
+#message-box {
+  border: 1px solid #000;
+  background-color: yellow;
+  padding: 5px;
+  display: block;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: block;
+}
