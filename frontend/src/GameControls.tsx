@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 
-const GameControls: React.FC = () => {
-  const [player1Name, setPlayer1Name] = useState("");
-  const [player2Name, setPlayer2Name] = useState("");
-
-  // Input change handlers
-
-  return <div>{/* Player input form */}</div>;
+const GameControls = ({
+  onButtonClick,
+}: {
+  onButtonClick: (buttonId: string) => void;
+}) => {
+  return (
+    <div>
+      <button onClick={() => onButtonClick("start")}>Start game</button>
+      <button onClick={() => onButtonClick("finish")}>Finish game</button>
+    </div>
+  );
 };
 
 export default GameControls;
