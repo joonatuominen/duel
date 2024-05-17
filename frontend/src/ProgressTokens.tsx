@@ -9,26 +9,37 @@ const ProgressTokens = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const fetchProgressTokens = async () => {
-        try {
-          const response = await fetch("/duel/get_progress_tokens");
-          if (!response.ok) {
-            throw new Error("Failed to fetch progress tokens");
-          }
-          const progressTokensTmp = await response.json();
+    let isMounted = true; // Flag to track component mount state
+
+    const fetchProgressTokens = async () => {
+      try {
+        const response = await fetch("/duel/get_progress_tokens");
+        if (!response.ok) {
+          throw new Error("Failed to fetch progress tokens");
+        }
+        const progressTokensTmp = await response.json();
+        if (isMounted) {
+          // Update state only if the component is still mounted
           setProgressTokens(progressTokensTmp.tokens);
           onTokenReceived("Tokens fetched");
-        } catch (error) {
-          console.error("Error fetching progress tokens:", error);
-          onTokenReceived(" - Error fetching progress tokens");
-        } finally {
+        }
+      } catch (error) {
+        console.error("Error fetching progress tokens:", error);
+        onTokenReceived(" - Error fetching progress tokens");
+      } finally {
+        if (isMounted) {
+          // Update loading state only if the component is still mounted
           setLoading(false);
         }
-      };
+      }
+    };
 
-      fetchProgressTokens();
-    }, 3000); // 3000 milliseconds = 3 seconds
+    fetchProgressTokens();
+
+    // Cleanup function to be executed when the component unmounts
+    return () => {
+      isMounted = false; // Mark component as unmounted
+    };
   }, []); // Empty dependency array to ensure the effect runs only once
 
   if (loading) {
