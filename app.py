@@ -55,6 +55,18 @@ def get_items():
     selected_items = tokens[:5]
     return jsonify({'tokens': selected_items})
 
+@app.route('/get_wonders')
+def get_wonders():
+    # Generate or fetch the items data
+    wonders = ['Circus Maximus', 'The Colossus', 'The Pyramids', 'The Statue of Zeus', 'The Mausoleum', 'The Sphinx', 'The Hanging Gardens', 'The Appian Way', 'The Great Lighthouse', 'The Great Library', 'The Temple of Atremis', 'Piraeus']
+    # Shuffle the array randomly
+    random.shuffle(wonders)
+    # Return two sets of 4 items
+    set1 = wonders[:4]
+    set2 = wonders[5:8]
+    wonderSets = [set1, set2]
+    return jsonify({'wonders': wonderSets})
+
 
 # Route for serving static files
 @app.route('/static/<path:filename>')

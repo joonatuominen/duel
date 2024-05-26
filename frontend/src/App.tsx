@@ -5,6 +5,7 @@ import GameControls from "./GameControls";
 import { GameProvider } from "./GameContext";
 import MessageBox from "./MessageBox";
 import ProgressTokens from "./ProgressTokens";
+import Wonders from "./Wonders";
 import GameStatus from "./GameStatus";
 
 // Define the interface for a message
@@ -21,6 +22,7 @@ const App = () => {
       <PlayerInputForm />
       <MessageBox />
       <ProgressTokens />
+      <Wonders />
     </GameProvider>
   );
 };

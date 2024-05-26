@@ -34,6 +34,12 @@ code {
   border: 2px solid #5b822b; /* Set initial border to transparent */
 }
 
+.wonder {
+  width: 100px;
+  height: 50px;
+  border: 1px solid #000;
+}
+
 .message-box {
   border: 1px solid #000;
   background-color: yellow;
