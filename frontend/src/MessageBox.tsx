@@ -1,4 +1,5 @@
 import React, { useState, useEffect, FC } from "react";
+import { useGame } from "./GameContext";
 
 interface Message {
   content: string;
@@ -9,6 +10,7 @@ interface MessageBoxProps {
   messages: Message[];
 }
 
+/*
 const MessageBox: FC<MessageBoxProps> = ({
   messages,
 }: {
@@ -20,6 +22,21 @@ const MessageBox: FC<MessageBoxProps> = ({
         <p key={index}>
           {message.timestamp} - {message.content}
         </p>
+      ))}
+    </div>
+  );
+};
+*/
+
+const MessageBox = () => {
+  const { gameMessages } = useGame();
+
+  return (
+    <div className="message-box">
+      {gameMessages.map((message, index) => (
+        <div key={index} className="message">
+          <span>{message.timestamp}</span>: {message.content}
+        </div>
       ))}
     </div>
   );

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useGame } from "./GameContext";
 
-const ProgressTokens = ({
-  onTokenReceived,
-}: {
-  onTokenReceived: (message: string) => void;
-}) => {
+const ProgressTokens = () => {
+  const { gameId, handleMessageAddition } = useGame();
   const [progressTokens, setProgressTokens] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!gameId) return;
+
     let isMounted = true; // Flag to track component mount state
 
     const fetchProgressTokens = async () => {
@@ -21,11 +21,11 @@ const ProgressTokens = ({
         if (isMounted) {
           // Update state only if the component is still mounted
           setProgressTokens(progressTokensTmp.tokens);
-          onTokenReceived("Tokens fetched");
+          handleMessageAddition("Tokens fetched");
         }
       } catch (error) {
         console.error("Error fetching progress tokens:", error);
-        onTokenReceived(" - Error fetching progress tokens");
+        handleMessageAddition(" - Error fetching progress tokens");
       } finally {
         if (isMounted) {
           // Update loading state only if the component is still mounted
@@ -40,7 +40,7 @@ const ProgressTokens = ({
     return () => {
       isMounted = false; // Mark component as unmounted
     };
-  }, []); // Empty dependency array to ensure the effect runs only once
+  }, [gameId, handleMessageAddition]); // Dependency array now includes gameId
 
   if (loading) {
     return <p>Loading...</p>;

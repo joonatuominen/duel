@@ -1,13 +1,15 @@
 // PlayerInputForm.tsx
 import React, { useState } from "react";
+import { useGame } from "./GameContext";
 
-const PlayerInputForm: React.FC = () => {
-  const [player1Name, setPlayer1Name] = useState("");
-  const [player2Name, setPlayer2Name] = useState("");
+const PlayerInputForm = () => {
+  const { isGameRunning } = useGame();
 
-  // Input change handlers
-
-  return <div>{/* Player input form */}</div>;
+  return (
+    <div>
+      {/* Form logic here, can use isGameRunning to determine if input is enabled */}
+    </div>
+  );
 };
 
 export default PlayerInputForm;
